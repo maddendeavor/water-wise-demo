@@ -33,15 +33,59 @@ initialize:
       method: MockObservations
       global-config:
         timestamp-from: '2024-03-05T00:00:00.000Z'
-        timestamp-to: '2024-03-05T00:01:00.000Z'
-        duration: 10
+        timestamp-to: '2024-03-05T01:00:00.000Z'
+        duration: 300
         components:
-          - name: server-1
+          - name: server-westus3-1
             cloud/instance-type: Standard_E64_v3
             cloud/region: westus3
-          - name: server-2
+            application: db
+            team: data
+          - name: server-westus3-2
             cloud/instance-type: Standard_E64_v3
             cloud/region: westus3
+            application: db
+            team: data
+          - name: server-westus3-3
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus3
+            application: cache
+            team: data
+          - name: server-westus3-4
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus3
+            application: api
+            team: dev
+          - name: server-westus3-5
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus3
+            application: api
+            team: dev
+          - name: server-westus2-1
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus2
+            application: db
+            team: data
+          - name: server-westus2-2
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus2
+            application: db
+            team: data
+          - name: server-westus2-3
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus2
+            application: cache
+            team: data
+          - name: server-westus2-4
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus2
+            application: api
+            team: dev
+          - name: server-westus2-5
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus2
+            application: api
+            team: dev
         generators:
           common:
             cloud/vendor: azure
@@ -54,8 +98,8 @@ initialize:
       method: TimeSync
       global-config:
         start-time: '2024-03-05T00:00:00.000Z'
-        end-time: '2024-03-05T00:01:00.000Z'
-        interval: 5
+        end-time: '2024-03-05T01:00:00.000Z'
+        interval: 900
         allow-padding: true
   outputs:
     - yaml
@@ -74,732 +118,2346 @@ tree:
   config:
     group-by:
       group:
+        - cloud/vendor
         - cloud/region
+        - application
         - name
   children:
-    westus3:
+    azure:
       children:
-        server-1:
-          inputs:
-            - timestamp: '2024-03-05T00:00:00.000Z'
-              duration: 10
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 48
-            - timestamp: '2024-03-05T00:00:10.000Z'
-              duration: 10
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 72
-            - timestamp: '2024-03-05T00:00:20.000Z'
-              duration: 10
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 23
-            - timestamp: '2024-03-05T00:00:30.000Z'
-              duration: 10
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 97
-            - timestamp: '2024-03-05T00:00:40.000Z'
-              duration: 10
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 91
-            - timestamp: '2024-03-05T00:00:50.000Z'
-              duration: 10
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 49
+        westus3:
+          children:
+            db:
+              children:
+                server-westus3-1:
+                  inputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 300
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 14
+                    - timestamp: '2024-03-05T00:05:00.000Z'
+                      duration: 300
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 12
+                    - timestamp: '2024-03-05T00:10:00.000Z'
+                      duration: 300
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 95
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 300
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 7
+                    - timestamp: '2024-03-05T00:20:00.000Z'
+                      duration: 300
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 79
+                    - timestamp: '2024-03-05T00:25:00.000Z'
+                      duration: 300
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 50
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 300
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 42
+                    - timestamp: '2024-03-05T00:35:00.000Z'
+                      duration: 300
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 31
+                    - timestamp: '2024-03-05T00:40:00.000Z'
+                      duration: 300
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 42
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 300
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 9
+                    - timestamp: '2024-03-05T00:50:00.000Z'
+                      duration: 300
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 51
+                    - timestamp: '2024-03-05T00:55:00.000Z'
+                      duration: 300
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 17
+                  outputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 900
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 40.227777777777774
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 371.00124354678474
+                      cpu/energy: 0.046081331782336934
+                      carbon: 17.096231395538975
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 900
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 45.27777777777778
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 467.35060086364916
+                      cpu/energy: 0.04852369066963782
+                      carbon: 22.677575990577083
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 900
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 38.28666666666667
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 682.9920882487507
+                      cpu/energy: 0.04506783210610981
+                      carbon: 30.780972762996033
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 900
+                      name: server-westus3-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 25.647777777777776
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 1032.7454461931418
+                      cpu/energy: 0.03697562483493874
+                      carbon: 38.186408168429026
+                  aggregated:
+                    carbon: 108.74118831754112
+                server-westus3-2:
+                  inputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 300
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 67
+                    - timestamp: '2024-03-05T00:05:00.000Z'
+                      duration: 300
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 95
+                    - timestamp: '2024-03-05T00:10:00.000Z'
+                      duration: 300
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 53
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 300
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 29
+                    - timestamp: '2024-03-05T00:20:00.000Z'
+                      duration: 300
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 20
+                    - timestamp: '2024-03-05T00:25:00.000Z'
+                      duration: 300
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 94
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 300
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 85
+                    - timestamp: '2024-03-05T00:35:00.000Z'
+                      duration: 300
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 22
+                    - timestamp: '2024-03-05T00:40:00.000Z'
+                      duration: 300
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 30
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 300
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 77
+                    - timestamp: '2024-03-05T00:50:00.000Z'
+                      duration: 300
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 77
+                    - timestamp: '2024-03-05T00:55:00.000Z'
+                      duration: 300
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 15
+                  outputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 900
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 71.60777777777778
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 371.00124354678474
+                      cpu/energy: 0.05915425027327042
+                      carbon: 21.946300412461056
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 900
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 47.562222222222225
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 467.35060086364916
+                      cpu/energy: 0.04955685217275353
+                      carbon: 23.160424639847403
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 900
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 45.63333333333333
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 682.9920882487507
+                      cpu/energy: 0.04868693735127287
+                      carbon: 33.25279301198196
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 900
+                      name: server-westus3-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 56.31666666666667
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 1032.7454461931418
+                      cpu/energy: 0.053278532357063646
+                      carbon: 55.02316167161144
+                  aggregated:
+                    carbon: 133.38267973590186
+              outputs:
+                - carbon: 39.042531808000035
+                  timestamp: '2024-03-05T00:00:00.000Z'
+                  duration: 900
+                - carbon: 45.83800063042449
+                  timestamp: '2024-03-05T00:15:00.000Z'
+                  duration: 900
+                - carbon: 64.033765774978
+                  timestamp: '2024-03-05T00:30:00.000Z'
+                  duration: 900
+                - carbon: 93.20956984004047
+                  timestamp: '2024-03-05T00:45:00.000Z'
+                  duration: 900
+              aggregated:
+                carbon: 242.12386805344298
+            cache:
+              children:
+                server-westus3-3:
+                  inputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 300
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 29
+                    - timestamp: '2024-03-05T00:05:00.000Z'
+                      duration: 300
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 8
+                    - timestamp: '2024-03-05T00:10:00.000Z'
+                      duration: 300
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 46
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 300
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 97
+                    - timestamp: '2024-03-05T00:20:00.000Z'
+                      duration: 300
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 32
+                    - timestamp: '2024-03-05T00:25:00.000Z'
+                      duration: 300
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 3
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 300
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 6
+                    - timestamp: '2024-03-05T00:35:00.000Z'
+                      duration: 300
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 91
+                    - timestamp: '2024-03-05T00:40:00.000Z'
+                      duration: 300
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 37
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 300
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 25
+                    - timestamp: '2024-03-05T00:50:00.000Z'
+                      duration: 300
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 83
+                    - timestamp: '2024-03-05T00:55:00.000Z'
+                      duration: 300
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 67
+                  outputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 900
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 27.615555555555556
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 371.00124354678474
+                      cpu/energy: 0.038440709629081
+                      carbon: 14.261551075209914
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 900
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 43.99666666666667
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 467.35060086364916
+                      cpu/energy: 0.04792703328961248
+                      carbon: 22.398727805512507
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 900
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 44.62555555555556
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 682.9920882487507
+                      cpu/energy: 0.04822163793131079
+                      carbon: 32.93499718948112
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 900
+                      name: server-westus3-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 58.25888888888889
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 1032.7454461931418
+                      cpu/energy: 0.05406492465922105
+                      carbon: 55.83530474058584
+                  aggregated:
+                    carbon: 125.43058081078938
+              outputs:
+                - carbon: 14.261551075209914
+                  timestamp: '2024-03-05T00:00:00.000Z'
+                  duration: 900
+                - carbon: 22.398727805512507
+                  timestamp: '2024-03-05T00:15:00.000Z'
+                  duration: 900
+                - carbon: 32.93499718948112
+                  timestamp: '2024-03-05T00:30:00.000Z'
+                  duration: 900
+                - carbon: 55.83530474058584
+                  timestamp: '2024-03-05T00:45:00.000Z'
+                  duration: 900
+              aggregated:
+                carbon: 125.43058081078938
+            api:
+              children:
+                server-westus3-4:
+                  inputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 300
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 10
+                    - timestamp: '2024-03-05T00:05:00.000Z'
+                      duration: 300
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 81
+                    - timestamp: '2024-03-05T00:10:00.000Z'
+                      duration: 300
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 43
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 300
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 12
+                    - timestamp: '2024-03-05T00:20:00.000Z'
+                      duration: 300
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 35
+                    - timestamp: '2024-03-05T00:25:00.000Z'
+                      duration: 300
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 90
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 300
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 86
+                    - timestamp: '2024-03-05T00:35:00.000Z'
+                      duration: 300
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 51
+                    - timestamp: '2024-03-05T00:40:00.000Z'
+                      duration: 300
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 66
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 300
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 71
+                    - timestamp: '2024-03-05T00:50:00.000Z'
+                      duration: 300
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 2
+                    - timestamp: '2024-03-05T00:55:00.000Z'
+                      duration: 300
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 57
+                  outputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 900
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 44.61888888888889
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 371.00124354678474
+                      cpu/energy: 0.048218532564122105
+                      carbon: 17.889135543290436
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 900
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 45.56666666666667
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 467.35060086364916
+                      cpu/energy: 0.048656402297324694
+                      carbon: 22.739598849518135
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 900
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 67.59333333333333
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 682.9920882487507
+                      cpu/energy: 0.0576759140220033
+                      carbon: 39.392192959543436
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 900
+                      name: server-westus3-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 43.27
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 1032.7454461931418
+                      cpu/energy: 0.047582257276537074
+                      carbon: 49.14035952193415
+                  aggregated:
+                    carbon: 129.16128687428616
+                server-westus3-5:
+                  inputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 300
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 34
+                    - timestamp: '2024-03-05T00:05:00.000Z'
+                      duration: 300
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 2
+                    - timestamp: '2024-03-05T00:10:00.000Z'
+                      duration: 300
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 35
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 300
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 27
+                    - timestamp: '2024-03-05T00:20:00.000Z'
+                      duration: 300
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 23
+                    - timestamp: '2024-03-05T00:25:00.000Z'
+                      duration: 300
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 49
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 300
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 81
+                    - timestamp: '2024-03-05T00:35:00.000Z'
+                      duration: 300
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 24
+                    - timestamp: '2024-03-05T00:40:00.000Z'
+                      duration: 300
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 4
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 300
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 83
+                    - timestamp: '2024-03-05T00:50:00.000Z'
+                      duration: 300
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 66
+                    - timestamp: '2024-03-05T00:55:00.000Z'
+                      duration: 300
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 48
+                  outputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 900
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 23.627777777777776
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 371.00124354678474
+                      cpu/energy: 0.035377319180397146
+                      carbon: 13.125029409278861
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 900
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 32.94555555555556
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 467.35060086364916
+                      cpu/energy: 0.04200151238006943
+                      carbon: 19.62943204800745
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 900
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 36.32888888888889
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 682.9920882487507
+                      cpu/energy: 0.04399456879830952
+                      carbon: 30.04794241516075
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 900
+                      name: server-westus3-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus3
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 65.61333333333333
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 1032.7454461931418
+                      cpu/energy: 0.056931425872890726
+                      carbon: 58.795670815510306
+                  aggregated:
+                    carbon: 121.59807468795736
+              outputs:
+                - carbon: 31.014164952569296
+                  timestamp: '2024-03-05T00:00:00.000Z'
+                  duration: 900
+                - carbon: 42.36903089752558
+                  timestamp: '2024-03-05T00:15:00.000Z'
+                  duration: 900
+                - carbon: 69.44013537470418
+                  timestamp: '2024-03-05T00:30:00.000Z'
+                  duration: 900
+                - carbon: 107.93603033744446
+                  timestamp: '2024-03-05T00:45:00.000Z'
+                  duration: 900
+              aggregated:
+                carbon: 250.75936156224353
           outputs:
-            - timestamp: '2024-03-05T00:00:00.000Z'
-              duration: 5
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 38.4
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 369.4947514218548
-              cpu/energy: 0.00025071297241463416
-              carbon: 0.09263712742057958
-            - timestamp: '2024-03-05T00:00:05.000Z'
-              duration: 5
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 38.4
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.00025071297241463416
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:10.000Z'
-              duration: 5
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 57.6
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.00029888673980487805
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:15.000Z'
-              duration: 5
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 57.6
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.00029888673980487805
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:20.000Z'
-              duration: 5
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 18.4
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.00017083856143902437
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:25.000Z'
-              duration: 5
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 18.4
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.00017083856143902437
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:30.000Z'
-              duration: 5
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 77.6
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.0003405175129756098
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:35.000Z'
-              duration: 5
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 77.6
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.0003405175129756098
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:40.000Z'
-              duration: 5
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 72.8
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.0003310326210731708
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:45.000Z'
-              duration: 5
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 72.8
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.0003310326210731708
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:50.000Z'
-              duration: 5
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 39.2
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.0002530590425121952
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:55.000Z'
-              duration: 5
-              name: server-1
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 39.2
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.0002530590425121952
-              carbon: 0
+            - carbon: 84.31824783577925
+              timestamp: '2024-03-05T00:00:00.000Z'
+              duration: 900
+            - carbon: 110.60575933346257
+              timestamp: '2024-03-05T00:15:00.000Z'
+              duration: 900
+            - carbon: 166.4088983391633
+              timestamp: '2024-03-05T00:30:00.000Z'
+              duration: 900
+            - carbon: 256.9809049180708
+              timestamp: '2024-03-05T00:45:00.000Z'
+              duration: 900
           aggregated:
-            carbon: 0.09263712742057958
-        server-2:
-          inputs:
-            - timestamp: '2024-03-05T00:00:00.000Z'
-              duration: 10
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 91
-            - timestamp: '2024-03-05T00:00:10.000Z'
-              duration: 10
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 19
-            - timestamp: '2024-03-05T00:00:20.000Z'
-              duration: 10
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 34
-            - timestamp: '2024-03-05T00:00:30.000Z'
-              duration: 10
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 66
-            - timestamp: '2024-03-05T00:00:40.000Z'
-              duration: 10
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 8
-            - timestamp: '2024-03-05T00:00:50.000Z'
-              duration: 10
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 39
+            carbon: 618.3138104264759
+        westus2:
+          children:
+            db:
+              children:
+                server-westus2-1:
+                  inputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 300
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 94
+                    - timestamp: '2024-03-05T00:05:00.000Z'
+                      duration: 300
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 67
+                    - timestamp: '2024-03-05T00:10:00.000Z'
+                      duration: 300
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 66
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 300
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 31
+                    - timestamp: '2024-03-05T00:20:00.000Z'
+                      duration: 300
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 98
+                    - timestamp: '2024-03-05T00:25:00.000Z'
+                      duration: 300
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 64
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 300
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 50
+                    - timestamp: '2024-03-05T00:35:00.000Z'
+                      duration: 300
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 51
+                    - timestamp: '2024-03-05T00:40:00.000Z'
+                      duration: 300
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 18
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 300
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 17
+                    - timestamp: '2024-03-05T00:50:00.000Z'
+                      duration: 300
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 14
+                    - timestamp: '2024-03-05T00:55:00.000Z'
+                      duration: 300
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 13
+                  outputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 900
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 75.59333333333333
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 371.00124354678474
+                      cpu/energy: 0.06058504855551549
+                      carbon: 22.47712835443858
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 900
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 64.26222222222222
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 467.35060086364916
+                      cpu/energy: 0.056417134812506126
+                      carbon: 26.366581853630237
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 900
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 39.64666666666667
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 682.9920882487507
+                      cpu/energy: 0.0457828598058286
+                      carbon: 31.26933102478267
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 900
+                      name: server-westus2-1
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 14.652222222222223
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 1032.7454461931418
+                      cpu/energy: 0.0269503867605255
+                      carbon: 27.83288920007665
+                  aggregated:
+                    carbon: 107.94593043292814
+                server-westus2-2:
+                  inputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 300
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 72
+                    - timestamp: '2024-03-05T00:05:00.000Z'
+                      duration: 300
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 26
+                    - timestamp: '2024-03-05T00:10:00.000Z'
+                      duration: 300
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 72
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 300
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 8
+                    - timestamp: '2024-03-05T00:20:00.000Z'
+                      duration: 300
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 51
+                    - timestamp: '2024-03-05T00:25:00.000Z'
+                      duration: 300
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 98
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 300
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 41
+                    - timestamp: '2024-03-05T00:35:00.000Z'
+                      duration: 300
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 96
+                    - timestamp: '2024-03-05T00:40:00.000Z'
+                      duration: 300
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 87
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 300
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 96
+                    - timestamp: '2024-03-05T00:50:00.000Z'
+                      duration: 300
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 54
+                    - timestamp: '2024-03-05T00:55:00.000Z'
+                      duration: 300
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: db
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 83
+                  outputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 900
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 56.586666666666666
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 371.00124354678474
+                      cpu/energy: 0.05338864357060683
+                      carbon: 19.80725315597119
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 900
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 52.224444444444444
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 467.35060086364916
+                      cpu/energy: 0.05157694394025083
+                      carbon: 24.104515741186972
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 900
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 74.57
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 682.9920882487507
+                      cpu/energy: 0.06022089692784701
+                      carbon: 41.13039614896301
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 900
+                      name: server-westus2-2
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 77.57444444444444
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 1032.7454461931418
+                      cpu/energy: 0.0612841820102416
+                      carbon: 63.290959894748674
+                  aggregated:
+                    carbon: 148.33312494086985
+              outputs:
+                - carbon: 42.28438151040977
+                  timestamp: '2024-03-05T00:00:00.000Z'
+                  duration: 900
+                - carbon: 50.47109759481721
+                  timestamp: '2024-03-05T00:15:00.000Z'
+                  duration: 900
+                - carbon: 72.39972717374567
+                  timestamp: '2024-03-05T00:30:00.000Z'
+                  duration: 900
+                - carbon: 91.12384909482532
+                  timestamp: '2024-03-05T00:45:00.000Z'
+                  duration: 900
+              aggregated:
+                carbon: 256.279055373798
+            cache:
+              children:
+                server-westus2-3:
+                  inputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 300
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 71
+                    - timestamp: '2024-03-05T00:05:00.000Z'
+                      duration: 300
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 38
+                    - timestamp: '2024-03-05T00:10:00.000Z'
+                      duration: 300
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 27
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 300
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 71
+                    - timestamp: '2024-03-05T00:20:00.000Z'
+                      duration: 300
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 20
+                    - timestamp: '2024-03-05T00:25:00.000Z'
+                      duration: 300
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 62
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 300
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 53
+                    - timestamp: '2024-03-05T00:35:00.000Z'
+                      duration: 300
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 11
+                    - timestamp: '2024-03-05T00:40:00.000Z'
+                      duration: 300
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 22
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 300
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 60
+                    - timestamp: '2024-03-05T00:50:00.000Z'
+                      duration: 300
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 8
+                    - timestamp: '2024-03-05T00:55:00.000Z'
+                      duration: 300
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: cache
+                      team: data
+                      cloud/vendor: azure
+                      cpu/utilization: 24
+                  outputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 900
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 45.303333333333335
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 371.00124354678474
+                      cpu/energy: 0.048535456590340344
+                      carbon: 18.006714751127255
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 900
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 50.931111111111115
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 467.35060086364916
+                      cpu/energy: 0.05102586788100474
+                      carbon: 23.84697001377674
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 900
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 28.642222222222223
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 682.9920882487507
+                      cpu/energy: 0.03917113710325828
+                      carbon: 26.753576729232492
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 900
+                      name: server-westus2-3
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 30.64
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 1032.7454461931418
+                      cpu/energy: 0.040529704764222435
+                      carbon: 41.856868030803206
+                  aggregated:
+                    carbon: 110.4641295249397
+              outputs:
+                - carbon: 18.006714751127255
+                  timestamp: '2024-03-05T00:00:00.000Z'
+                  duration: 900
+                - carbon: 23.84697001377674
+                  timestamp: '2024-03-05T00:15:00.000Z'
+                  duration: 900
+                - carbon: 26.753576729232492
+                  timestamp: '2024-03-05T00:30:00.000Z'
+                  duration: 900
+                - carbon: 41.856868030803206
+                  timestamp: '2024-03-05T00:45:00.000Z'
+                  duration: 900
+              aggregated:
+                carbon: 110.4641295249397
+            api:
+              children:
+                server-westus2-4:
+                  inputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 300
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 16
+                    - timestamp: '2024-03-05T00:05:00.000Z'
+                      duration: 300
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 84
+                    - timestamp: '2024-03-05T00:10:00.000Z'
+                      duration: 300
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 42
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 300
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 14
+                    - timestamp: '2024-03-05T00:20:00.000Z'
+                      duration: 300
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 75
+                    - timestamp: '2024-03-05T00:25:00.000Z'
+                      duration: 300
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 31
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 300
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 66
+                    - timestamp: '2024-03-05T00:35:00.000Z'
+                      duration: 300
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 98
+                    - timestamp: '2024-03-05T00:40:00.000Z'
+                      duration: 300
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 74
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 300
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 12
+                    - timestamp: '2024-03-05T00:50:00.000Z'
+                      duration: 300
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 64
+                    - timestamp: '2024-03-05T00:55:00.000Z'
+                      duration: 300
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 86
+                  outputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 900
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 47.28666666666667
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 371.00124354678474
+                      cpu/energy: 0.04943408059305189
+                      carbon: 18.34010537361423
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 900
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 39.965555555555554
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 467.35060086364916
+                      cpu/energy: 0.04594715252467631
+                      carbon: 21.473429340381205
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 900
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 79.25111111111111
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 682.9920882487507
+                      cpu/energy: 0.06187024770673059
+                      carbon: 42.256889681687404
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 900
+                      name: server-westus2-4
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 53.904444444444444
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 1032.7454461931418
+                      cpu/energy: 0.052283076734600586
+                      carbon: 53.99510941062535
+                  aggregated:
+                    carbon: 136.0655338063082
+                server-westus2-5:
+                  inputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 300
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 20
+                    - timestamp: '2024-03-05T00:05:00.000Z'
+                      duration: 300
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 18
+                    - timestamp: '2024-03-05T00:10:00.000Z'
+                      duration: 300
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 43
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 300
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 10
+                    - timestamp: '2024-03-05T00:20:00.000Z'
+                      duration: 300
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 12
+                    - timestamp: '2024-03-05T00:25:00.000Z'
+                      duration: 300
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 23
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 300
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 5
+                    - timestamp: '2024-03-05T00:35:00.000Z'
+                      duration: 300
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 64
+                    - timestamp: '2024-03-05T00:40:00.000Z'
+                      duration: 300
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 23
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 300
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 74
+                    - timestamp: '2024-03-05T00:50:00.000Z'
+                      duration: 300
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 86
+                    - timestamp: '2024-03-05T00:55:00.000Z'
+                      duration: 300
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: api
+                      team: dev
+                      cloud/vendor: azure
+                      cpu/utilization: 82
+                  outputs:
+                    - timestamp: '2024-03-05T00:00:00.000Z'
+                      duration: 900
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 26.952222222222222
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 371.00124354678474
+                      cpu/energy: 0.03795658600274737
+                      carbon: 14.081940607809758
+                    - timestamp: '2024-03-05T00:15:00.000Z'
+                      duration: 900
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 14.974444444444444
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 467.35060086364916
+                      cpu/energy: 0.027294289438839516
+                      carbon: 12.756002569388002
+                    - timestamp: '2024-03-05T00:30:00.000Z'
+                      duration: 900
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 30.641111111111112
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 682.9920882487507
+                      cpu/energy: 0.04053043818264262
+                      carbon: 27.681968611999984
+                    - timestamp: '2024-03-05T00:45:00.000Z'
+                      duration: 900
+                      name: server-westus2-5
+                      cloud/instance-type: Standard_E64_v3
+                      cloud/region: westus2
+                      application: .nan
+                      team: .nan
+                      cloud/vendor: azure
+                      cpu/utilization: 80.57555555555555
+                      vcpus-allocated: 64
+                      vcpus-total: 64
+                      memory-available: 432
+                      physical-processor: >-
+                        Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum
+                        8272CL,Intel® Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673
+                        v4 2.3 GHz
+                      cpu/thermal-design-power: 270
+                      cloud/region-cfe: CAISO
+                      cloud/region-em-zone-id: US-CAL-CISO
+                      cloud/region-wt-id: CAISO_NORTH
+                      cloud/region-location: US West (N. California)
+                      cloud/region-geolocation: 34.0497,-118.1326
+                      geolocation: 34.0497,-118.1326
+                      grid/carbon-intensity: 1032.7454461931418
+                      cpu/energy: 0.062329817355105274
+                      carbon: 64.37083503553522
+                  aggregated:
+                    carbon: 118.89074682473296
+              outputs:
+                - carbon: 32.422045981423985
+                  timestamp: '2024-03-05T00:00:00.000Z'
+                  duration: 900
+                - carbon: 34.229431909769204
+                  timestamp: '2024-03-05T00:15:00.000Z'
+                  duration: 900
+                - carbon: 69.93885829368739
+                  timestamp: '2024-03-05T00:30:00.000Z'
+                  duration: 900
+                - carbon: 118.36594444616057
+                  timestamp: '2024-03-05T00:45:00.000Z'
+                  duration: 900
+              aggregated:
+                carbon: 254.95628063104115
           outputs:
-            - timestamp: '2024-03-05T00:00:00.000Z'
-              duration: 5
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 72.8
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 369.4947514218548
-              cpu/energy: 0.0003310326210731708
-              carbon: 0.1223148160359563
-            - timestamp: '2024-03-05T00:00:05.000Z'
-              duration: 5
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 72.8
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.0003310326210731708
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:10.000Z'
-              duration: 5
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 15.2
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.00015296138934146338
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:15.000Z'
-              duration: 5
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 15.2
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.00015296138934146338
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:20.000Z'
-              duration: 5
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 27.2
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.00021188090129268289
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:25.000Z'
-              duration: 5
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 27.2
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.00021188090129268289
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:30.000Z'
-              duration: 5
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 52.8
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.0002878893210731707
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:35.000Z'
-              duration: 5
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 52.8
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.0002878893210731707
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:40.000Z'
-              duration: 5
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 6.4
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.000094253664
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:45.000Z'
-              duration: 5
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 6.4
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.000094253664
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:50.000Z'
-              duration: 5
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 31.2
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.00022720182153658535
-              carbon: 0
-            - timestamp: '2024-03-05T00:00:55.000Z'
-              duration: 5
-              name: server-2
-              cloud/instance-type: Standard_E64_v3
-              cloud/region: westus3
-              cloud/vendor: azure
-              cpu/utilization: 31.2
-              vcpus-allocated: 64
-              vcpus-total: 64
-              memory-available: 432
-              physical-processor: >-
-                Intel® Xeon® Platinum 8370C,Intel® Xeon® Platinum 8272CL,Intel®
-                Xeon® 8171M 2.1 GHz,Intel® Xeon® E5-2673 v4 2.3 GHz
-              cpu/thermal-design-power: 270
-              cloud/region-cfe: CAISO
-              cloud/region-em-zone-id: US-CAL-CISO
-              cloud/region-wt-id: CAISO_NORTH
-              cloud/region-location: US West (N. California)
-              cloud/region-geolocation: 34.0497,-118.1326
-              geolocation: 34.0497,-118.1326
-              grid/carbon-intensity: 0
-              cpu/energy: 0.00022720182153658535
-              carbon: 0
+            - carbon: 92.71314224296101
+              timestamp: '2024-03-05T00:00:00.000Z'
+              duration: 900
+            - carbon: 108.54749951836315
+              timestamp: '2024-03-05T00:15:00.000Z'
+              duration: 900
+            - carbon: 169.09216219666556
+              timestamp: '2024-03-05T00:30:00.000Z'
+              duration: 900
+            - carbon: 251.3466615717891
+              timestamp: '2024-03-05T00:45:00.000Z'
+              duration: 900
           aggregated:
-            carbon: 0.1223148160359563
+            carbon: 621.6994655297789
       outputs:
-        - carbon: 0.2149519434565359
+        - carbon: 177.03139007874026
           timestamp: '2024-03-05T00:00:00.000Z'
-          duration: 5
-        - carbon: 0
-          timestamp: '2024-03-05T00:00:05.000Z'
-          duration: 5
-        - carbon: 0
-          timestamp: '2024-03-05T00:00:10.000Z'
-          duration: 5
-        - carbon: 0
-          timestamp: '2024-03-05T00:00:15.000Z'
-          duration: 5
-        - carbon: 0
-          timestamp: '2024-03-05T00:00:20.000Z'
-          duration: 5
-        - carbon: 0
-          timestamp: '2024-03-05T00:00:25.000Z'
-          duration: 5
-        - carbon: 0
-          timestamp: '2024-03-05T00:00:30.000Z'
-          duration: 5
-        - carbon: 0
-          timestamp: '2024-03-05T00:00:35.000Z'
-          duration: 5
-        - carbon: 0
-          timestamp: '2024-03-05T00:00:40.000Z'
-          duration: 5
-        - carbon: 0
-          timestamp: '2024-03-05T00:00:45.000Z'
-          duration: 5
-        - carbon: 0
-          timestamp: '2024-03-05T00:00:50.000Z'
-          duration: 5
-        - carbon: 0
-          timestamp: '2024-03-05T00:00:55.000Z'
-          duration: 5
+          duration: 900
+        - carbon: 219.15325885182574
+          timestamp: '2024-03-05T00:15:00.000Z'
+          duration: 900
+        - carbon: 335.50106053582886
+          timestamp: '2024-03-05T00:30:00.000Z'
+          duration: 900
+        - carbon: 508.3275664898599
+          timestamp: '2024-03-05T00:45:00.000Z'
+          duration: 900
       aggregated:
-        carbon: 0.2149519434565359
+        carbon: 1240.0132759562548
   outputs:
-    - carbon: 0.2149519434565359
+    - carbon: 177.03139007874026
       timestamp: '2024-03-05T00:00:00.000Z'
-      duration: 5
-    - carbon: 0
-      timestamp: '2024-03-05T00:00:05.000Z'
-      duration: 5
-    - carbon: 0
-      timestamp: '2024-03-05T00:00:10.000Z'
-      duration: 5
-    - carbon: 0
-      timestamp: '2024-03-05T00:00:15.000Z'
-      duration: 5
-    - carbon: 0
-      timestamp: '2024-03-05T00:00:20.000Z'
-      duration: 5
-    - carbon: 0
-      timestamp: '2024-03-05T00:00:25.000Z'
-      duration: 5
-    - carbon: 0
-      timestamp: '2024-03-05T00:00:30.000Z'
-      duration: 5
-    - carbon: 0
-      timestamp: '2024-03-05T00:00:35.000Z'
-      duration: 5
-    - carbon: 0
-      timestamp: '2024-03-05T00:00:40.000Z'
-      duration: 5
-    - carbon: 0
-      timestamp: '2024-03-05T00:00:45.000Z'
-      duration: 5
-    - carbon: 0
-      timestamp: '2024-03-05T00:00:50.000Z'
-      duration: 5
-    - carbon: 0
-      timestamp: '2024-03-05T00:00:55.000Z'
-      duration: 5
+      duration: 900
+    - carbon: 219.15325885182574
+      timestamp: '2024-03-05T00:15:00.000Z'
+      duration: 900
+    - carbon: 335.50106053582886
+      timestamp: '2024-03-05T00:30:00.000Z'
+      duration: 900
+    - carbon: 508.3275664898599
+      timestamp: '2024-03-05T00:45:00.000Z'
+      duration: 900
   aggregated:
-    carbon: 0.2149519434565359
+    carbon: 1240.0132759562548

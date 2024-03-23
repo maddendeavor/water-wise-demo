@@ -37,15 +37,59 @@ initialize:
       method: MockObservations
       global-config:
         timestamp-from: '2024-03-05T00:00:00.000Z'
-        timestamp-to: '2024-03-05T00:01:00.000Z'
-        duration: 10
+        timestamp-to: '2024-03-05T01:00:00.000Z'
+        duration: 300
         components:
-          - name: server-1
+          - name: server-westus3-1  # west us
             cloud/instance-type: Standard_E64_v3
             cloud/region: westus3
-          - name: server-2
+            application: db
+            team: data
+          - name: server-westus3-2
             cloud/instance-type: Standard_E64_v3
-            cloud/region: westus3            
+            cloud/region: westus3
+            application: db
+            team: data
+          - name: server-westus3-3
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus3
+            application: cache
+            team: data
+          - name: server-westus3-4
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus3
+            application: api
+            team: dev
+          - name: server-westus3-5
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus3
+            application: api
+            team: dev
+          - name: server-westus2-1
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus2
+            application: db
+            team: data
+          - name: server-westus2-2
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus2
+            application: db
+            team: data
+          - name: server-westus2-3
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus2
+            application: cache
+            team: data
+          - name: server-westus2-4
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus2
+            application: api
+            team: dev
+          - name: server-westus2-5
+            cloud/instance-type: Standard_E64_v3
+            cloud/region: westus2
+            application: api
+            team: dev                  
         generators:
           common:
             cloud/vendor: azure
@@ -53,13 +97,13 @@ initialize:
             cpu/utilization:
               min: 1
               max: 99           
-    'time-sync':
+    time-sync:
       method: TimeSync
       path: "builtin"
       global-config: 
         start-time: '2024-03-05T00:00:00.000Z'
-        end-time: '2024-03-05T00:01:00.000Z'
-        interval: 5
+        end-time: '2024-03-05T01:00:00.000Z'
+        interval: 900
         allow-padding: true
 tree: 
   pipeline:
@@ -71,10 +115,13 @@ tree:
     - teads-curve
     - operational-carbon
   defaults:
+    #grid/carbon-intensity: 500
   config:
     group-by:
       group:
+        - cloud/vendor
         - cloud/region
+        - application
         - name
     #copy-param: 
       #from-param: cpu/energy
