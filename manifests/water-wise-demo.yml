@@ -3,6 +3,7 @@ description: My First Manifest File 💚
 aggregation:
   metrics:
     - 'carbon'
+    - 'cpu/energy'
   type: 'both'
 initialize:
   outputs: ['yaml', 'csv']
@@ -10,6 +11,11 @@ initialize:
     group-by: 
       path: 'builtin'
       method: GroupBy
+    #sampler:
+      #method: Shell
+      #path: '@grnsft/if-plugins'
+      #global-config:
+        #command: python3 ./sampler.py
     #copy-param:
       #path: 'copy-plugin'
       #method: Copy      
@@ -103,7 +109,7 @@ initialize:
       global-config: 
         start-time: '2024-03-05T00:00:00.000Z'
         end-time: '2024-03-05T01:00:00.000Z'
-        interval: 900
+        interval: 300
         allow-padding: true
 tree: 
   pipeline:
@@ -114,6 +120,7 @@ tree:
     - watttime
     - teads-curve
     - operational-carbon
+    #- sampler
   defaults:
     #grid/carbon-intensity: 500
   config:

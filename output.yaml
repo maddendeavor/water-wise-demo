@@ -1,0 +1,33 @@
+name: shell-demo
+description: null
+tags: null
+initialize:
+  plugins:
+    sampler:
+      path: '@grnsft/if-plugins'
+      method: Shell
+      global-config:
+        command: python3 ./sampler.py
+  outputs:
+    - yaml
+if-version: v0.3.1
+tree:
+  children:
+    child:
+      pipeline:
+        - sampler
+      inputs:
+        - timestamp: 2023-07-06T00:00
+          duration: 1
+          cpu/energy: 0.002
+          memory/energy: 0.000005
+      outputs:
+        - - cpu/energy: 0.002
+            duration: 1
+            energy: 0.016
+            item: >-
+              {'timestamp': '2023-07-06T00:00', 'duration': 1, 'cpu/energy':
+              0.002, 'memory/energy': 5e-06}
+            item_type: <class 'dict'>
+            memory/energy: 0.000005
+            timestamp: 2023-07-06T00:00

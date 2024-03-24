@@ -1,0 +1,22 @@
+name: shell-demo
+description:
+tags:
+initialize:
+  #outputs: ['yaml', 'csv']
+  outputs: ['yaml']
+  plugins:
+    sampler:
+      method: Shell
+      path: '@grnsft/if-plugins'
+      global-config:
+        command: python3 ./sampler.py
+tree:
+  children:
+    child:
+      pipeline:
+        - sampler
+      inputs:
+        - timestamp: 2023-07-06T00:00
+          duration: 1 # Secs
+          cpu/energy: 0.002
+          memory/energy: 0.000005
