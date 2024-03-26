@@ -1,13 +1,18 @@
 # Water-Wise-Demo
 The purpose of this project is to demo the IF Water-Wise plugin
 
+Check correct if-plugin is linked with this command:
+```
+npm ls -g --depth=0 --link=true
+```
+
 ## Installation/Build Instructions
 
 Install IF framework, official, and unofficial plugins as described in the docs
 
 To run the manifest file:
 ```
-npx ie --manifest ../water-wise/manifests/water-wise-demo.yml --output computed#carbon
+npx ie --manifest ../water-wise-demo/manifests/water-wise-demo.yml --output computed#carbon
 ```
 
 ## Scenario

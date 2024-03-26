@@ -7,6 +7,11 @@ aggregation:
   type: 'both'
 initialize:
   outputs: ['yaml', 'csv']
+  params: 
+  - name: wue  # todo move this into if params.ts file
+    description: Water Usage Effectiveness 
+    aggregation: sum
+    unit: L/kWh
   plugins: 
     group-by: 
       path: 'builtin'
@@ -25,8 +30,14 @@ initialize:
       path: '@grnsft/if-plugins'
       method: Multiply
       global-config:
-        input-parameters: ['cpu/energy', 'grid/carbon-intensity']
-        output-parameter: 'carbon'       
+        input-parameters: ['cpu/energy', 'grid/carbon-intensity']  # kWh x gCO2eq/kWh
+        output-parameter: 'carbon'  # gCO2eq
+    operational-water:
+      path: '@grnsft/if-plugins'
+      method: Multiply
+      global-config:
+        input-parameters: ['cpu/energy', 'wue'] # kWh x L/kWh
+        output-parameter: 'water'  # L      
     watttime:
       path: '@grnsft/if-unofficial-plugins'           
       method: WattTimeGridEmissions    
@@ -46,59 +57,130 @@ initialize:
         timestamp-to: '2024-03-05T01:00:00.000Z'
         duration: 300
         components:
-          - name: server-westus3-1  # west us
+          - name: server-westus3-1  # Azure westus3
+            cloud/vendor: azure
             cloud/instance-type: Standard_E64_v3
             cloud/region: westus3
             application: db
             team: data
           - name: server-westus3-2
+            cloud/vendor: azure
             cloud/instance-type: Standard_E64_v3
             cloud/region: westus3
             application: db
             team: data
           - name: server-westus3-3
+            cloud/vendor: azure
             cloud/instance-type: Standard_E64_v3
             cloud/region: westus3
             application: cache
             team: data
           - name: server-westus3-4
+            cloud/vendor: azure
             cloud/instance-type: Standard_E64_v3
             cloud/region: westus3
             application: api
             team: dev
           - name: server-westus3-5
+            cloud/vendor: azure
             cloud/instance-type: Standard_E64_v3
             cloud/region: westus3
             application: api
             team: dev
-          - name: server-westus2-1
+          - name: server-westus2-1  # Azure westus2
+            cloud/vendor: azure
             cloud/instance-type: Standard_E64_v3
             cloud/region: westus2
             application: db
             team: data
           - name: server-westus2-2
+            cloud/vendor: azure
             cloud/instance-type: Standard_E64_v3
             cloud/region: westus2
             application: db
             team: data
           - name: server-westus2-3
+            cloud/vendor: azure
             cloud/instance-type: Standard_E64_v3
             cloud/region: westus2
             application: cache
             team: data
           - name: server-westus2-4
+            cloud/vendor: azure
             cloud/instance-type: Standard_E64_v3
             cloud/region: westus2
             application: api
             team: dev
           - name: server-westus2-5
+            cloud/vendor: azure
             cloud/instance-type: Standard_E64_v3
             cloud/region: westus2
             application: api
             team: dev                  
+          - name: server-us-west-1-1  # AWS us-west-1
+            cloud/vendor: aws
+            cloud/instance-type: r4.16xlarge
+            cloud/region: us-west-1
+            application: db
+            team: data
+          - name: server-us-west-1-2
+            cloud/vendor: aws
+            cloud/instance-type: r4.16xlarge
+            cloud/region: us-west-1
+            application: db
+            team: data
+          - name: server-us-west-1-3
+            cloud/vendor: aws
+            cloud/instance-type: r4.16xlarge
+            cloud/region: us-west-1
+            application: cache
+            team: data
+          - name: server-us-west-1-4
+            cloud/vendor: aws
+            cloud/instance-type: r4.16xlarge
+            cloud/region: us-west-1
+            application: api
+            team: dev
+          - name: server-us-west-1-5
+            cloud/vendor: aws
+            cloud/instance-type: r4.16xlarge
+            cloud/region: us-west-1
+            application: api
+            team: dev
+          - name: server-us-west-1-1  # GCP us-west-1
+            cloud/vendor: aws
+            cloud/instance-type: r4.16xlarge
+            cloud/region: us-west-1
+            application: db
+            team: data
+          - name: server-us-west-1-2
+            cloud/vendor: aws
+            cloud/instance-type: r4.16xlarge
+            cloud/region: us-west-1
+            application: db
+            team: data
+          - name: server-us-west-1-3
+            cloud/vendor: aws
+            cloud/instance-type: r4.16xlarge
+            cloud/region: us-west-1
+            application: cache
+            team: data
+          - name: server-us-west-1-4
+            cloud/vendor: aws
+            cloud/instance-type: r4.16xlarge
+            cloud/region: us-west-1
+            application: api
+            team: dev
+          - name: server-us-west-1-5
+            cloud/vendor: aws
+            cloud/instance-type: r4.16xlarge
+            cloud/region: us-west-1
+            application: api
+            team: dev                    
         generators:
           common:
-            cloud/vendor: azure
+            #cloud/vendor: azure
+            common-key: common-val  # Dummy data just to get this to run
           randint:
             cpu/utilization:
               min: 1
@@ -117,9 +199,10 @@ tree:
     - group-by
     - time-sync
     - cloud-metadata
-    - watttime
-    - teads-curve
+    - watttime   # calculates grid/carbon-intensity
+    - teads-curve  # calculates cpu/energy
     - operational-carbon
+    - operational-water
     #- sampler
   defaults:
     #grid/carbon-intensity: 500
