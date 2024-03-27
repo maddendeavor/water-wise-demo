@@ -1,17 +1,22 @@
-name: My Manifest File
-description: My First Manifest File 💚
+name: WaterWise Manifest File 💚
+description: Demo of water wise compute decisions
 aggregation:
   metrics:
     - 'carbon'
     - 'cpu/energy'
+    - 'water'
   type: 'both'
 initialize:
   outputs: ['yaml', 'csv']
   params: 
-  - name: wue  # todo move this into if params.ts file
+  - name: water-usage-effectiveness  # todo move this into if params.ts file
     description: Water Usage Effectiveness 
     aggregation: sum
     unit: L/kWh
+  - name: water  # todo move this into if params.ts file
+    description: an amount of water used
+    aggregation: sum
+    unit: L
   plugins: 
     group-by: 
       path: 'builtin'
@@ -36,7 +41,7 @@ initialize:
       path: '@grnsft/if-plugins'
       method: Multiply
       global-config:
-        input-parameters: ['cpu/energy', 'wue'] # kWh x L/kWh
+        input-parameters: ['cpu/energy', 'water-usage-effectiveness'] # kWh x L/kWh
         output-parameter: 'water'  # L      
     watttime:
       path: '@grnsft/if-unofficial-plugins'           
@@ -147,40 +152,69 @@ initialize:
             cloud/region: us-west-1
             application: api
             team: dev
-          - name: server-us-west-1-1  # GCP us-west-1
-            cloud/vendor: aws
-            cloud/instance-type: r4.16xlarge
-            cloud/region: us-west-1
-            application: db
-            team: data
-          - name: server-us-west-1-2
-            cloud/vendor: aws
-            cloud/instance-type: r4.16xlarge
-            cloud/region: us-west-1
-            application: db
-            team: data
-          - name: server-us-west-1-3
-            cloud/vendor: aws
-            cloud/instance-type: r4.16xlarge
-            cloud/region: us-west-1
-            application: cache
-            team: data
-          - name: server-us-west-1-4
-            cloud/vendor: aws
-            cloud/instance-type: r4.16xlarge
-            cloud/region: us-west-1
-            application: api
-            team: dev
-          - name: server-us-west-1-5
-            cloud/vendor: aws
-            cloud/instance-type: r4.16xlarge
-            cloud/region: us-west-1
-            application: api
-            team: dev                    
+          # - name: server-us-west1-1  # GCP us-west1, best emitting datacenter
+          #   cloud/vendor: gcp
+          #   cloud/instance-type: r4.16xlarge  # need to update this?
+          #   cloud/region: us-west1
+          #   application: db
+          #   team: data
+          # - name: server-us-west1-2
+          #   cloud/vendor: gcp
+          #   cloud/instance-type: r4.16xlarge
+          #   cloud/region: us-west1
+          #   application: db
+          #   team: data
+          # - name: server-us-west1-3
+          #   cloud/vendor: gcp
+          #   cloud/instance-type: r4.16xlarge
+          #   cloud/region: us-west1
+          #   application: cache
+          #   team: data
+          # - name: server-us-west1-4
+          #   cloud/vendor: gcp
+          #   cloud/instance-type: r4.16xlarge
+          #   cloud/region: us-west1
+          #   application: api
+          #   team: dev
+          # - name: server-us-west1-5
+          #   cloud/vendor: gcp
+          #   cloud/instance-type: r4.16xlarge
+          #   cloud/region: us-west1
+          #   application: api
+          #   team: dev
+          # - name: server-us-west3-1  # GCP us-west-2, worst emitting datacenter
+          #   cloud/vendor: gcp
+          #   cloud/instance-type: r4.16xlarge
+          #   cloud/region: us-west3
+          #   application: db
+          #   team: data
+          # - name: server-us-west3-2
+          #   cloud/vendor: gcp
+          #   cloud/instance-type: r4.16xlarge
+          #   cloud/region: us-west3
+          #   application: db
+          #   team: data
+          # - name: server-us-west3-2
+          #   cloud/vendor: gcp
+          #   cloud/instance-type: r4.16xlarge
+          #   cloud/region: us-west3
+          #   application: cache
+          #   team: data
+          # - name: server-us-west3-4
+          #   cloud/vendor: gcp
+          #   cloud/instance-type: r4.16xlarge
+          #   cloud/region: us-west3
+          #   application: api
+          #   team: dev
+          # - name: server-us-west3-5
+          #   cloud/vendor: gcp
+          #   cloud/instance-type: r4.16xlarge
+          #   cloud/region: us-west3
+          #   application: api
+          #   team: dev
         generators:
           common:
-            #cloud/vendor: azure
-            common-key: common-val  # Dummy data just to get this to run
+            common-key: common-val  # Dummy variable just to get this to run
           randint:
             cpu/utilization:
               min: 1

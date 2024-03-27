@@ -6,13 +6,23 @@ Check correct if-plugin is linked with this command:
 npm ls -g --depth=0 --link=true
 ```
 
+Make sure to build changes in the linked `if-plugins` repo:
+```
+npm run build
+```
+
+Run this after making updates to the local plugin
+```
+npm link @grnsft/if-plugins
+```
+
 ## Installation/Build Instructions
 
 Install IF framework, official, and unofficial plugins as described in the docs
 
 To run the manifest file:
 ```
-npx ie --manifest ../water-wise-demo/manifests/water-wise-demo.yml --output computed#carbon
+npx ie --manifest ../water-wise-demo/manifests/water-wise-demo.yml --output computed#water
 ```
 
 ## Scenario
