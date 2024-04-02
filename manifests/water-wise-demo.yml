@@ -59,10 +59,10 @@ initialize:
       method: MockObservations
       global-config:
         timestamp-from: '2024-03-05T00:00:00.000Z'
-        timestamp-to: '2024-03-05T01:00:00.000Z'
+        timestamp-to: '2024-03-05T23:00:00.000Z'
         duration: 300
         components:
-          - name: server-westus3-1  # Azure westus3
+          - name: server-westus3-1  # Azure westus3, arizona
             cloud/vendor: azure
             cloud/instance-type: Standard_E64_v3
             cloud/region: westus3
@@ -92,7 +92,7 @@ initialize:
             cloud/region: westus3
             application: api
             team: dev
-          - name: server-westus2-1  # Azure westus2
+          - name: server-westus2-1  # Azure westus2, washington
             cloud/vendor: azure
             cloud/instance-type: Standard_E64_v3
             cloud/region: westus2
@@ -224,7 +224,7 @@ initialize:
       path: "builtin"
       global-config: 
         start-time: '2024-03-05T00:00:00.000Z'
-        end-time: '2024-03-05T01:00:00.000Z'
+        end-time: '2024-03-05T23:00:00.000Z'
         interval: 300
         allow-padding: true
 tree: 
