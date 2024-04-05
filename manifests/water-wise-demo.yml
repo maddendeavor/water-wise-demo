@@ -20,17 +20,7 @@ initialize:
   plugins: 
     group-by: 
       path: 'builtin'
-      method: GroupBy
-    #sampler:
-      #method: Shell
-      #path: '@grnsft/if-plugins'
-      #global-config:
-        #command: python3 ./sampler.py
-    #copy-param:
-      #path: 'copy-plugin'
-      #method: Copy      
-      #global-config:
-        #keep-existing: true       
+      method: GroupBy  
     operational-carbon:
       path: '@grnsft/if-plugins'
       method: Multiply
@@ -59,7 +49,7 @@ initialize:
       method: MockObservations
       global-config:
         timestamp-from: '2024-03-05T00:00:00.000Z'
-        timestamp-to: '2024-03-05T23:00:00.000Z'
+        timestamp-to: '2024-03-05T01:00:00.000Z'
         duration: 300
         components:
           - name: server-westus3-1  # Azure westus3, arizona
@@ -224,7 +214,7 @@ initialize:
       path: "builtin"
       global-config: 
         start-time: '2024-03-05T00:00:00.000Z'
-        end-time: '2024-03-05T23:00:00.000Z'
+        end-time: '2024-03-05T01:00:00.000Z'
         interval: 300
         allow-padding: true
 tree: 
@@ -237,7 +227,6 @@ tree:
     - teads-curve  # calculates cpu/energy
     - operational-carbon
     - operational-water
-    #- sampler
   defaults:
     #grid/carbon-intensity: 500
   config:
@@ -247,7 +236,4 @@ tree:
         - cloud/region
         - application
         - name
-    #copy-param: 
-      #from-param: cpu/energy
-      #to-param: energy
   inputs: null

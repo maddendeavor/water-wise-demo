@@ -71,7 +71,6 @@ of 18°C to 27°C (64°F to 81°F)
 
 ### AWS
 20 data centers use recycled water = Virginia, California, Oregon, United Kingdowm, Spain, Brazil, South Africa, India, Indonesia, Singapore, Australia
-
 Global WUE is 0.19 L/KWh
 
 
